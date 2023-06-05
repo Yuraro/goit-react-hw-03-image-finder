@@ -8,7 +8,6 @@ const ImageGalleryItem = ({ imgSrc, alt, imgModal }) => {
         <Image src={imgSrc} alt={alt} data-src={imgModal} />
     </GalleryItem>
 );
-
 };
 
 ImageGalleryItem.propTypes = {

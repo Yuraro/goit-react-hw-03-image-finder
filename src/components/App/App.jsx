@@ -17,11 +17,11 @@ export class App extends Component {
     searchQuery: '',
     pictures: [],
     page: 1,
-    totalPics: null, // total number of pictures getted from server
-    isOpen: false, // modal state
-    loading: false, // loader/spinner
-    modalImgSrc: '', // img for modal
-    error: null, // error message
+    totalPics: null, 
+    isOpen: false,
+    loading: false,
+    modalImgSrc: '',
+    error: null,
   };
 
 
@@ -47,7 +47,6 @@ export class App extends Component {
     const prevPage = prevState.page;
     const { searchQuery, page } = this.state;
 
-    //check if there are any changes in the state (new search query or click on load more btn)
     if (prevSearch !== searchQuery || prevPage !== page) {
       this.setState({ loading: true });
 
@@ -55,7 +54,7 @@ export class App extends Component {
         const response = await getPictures(searchQuery, page);
         const { hits, totalHits } = response.data;
         this.setState(prevState => ({
-          pictures: page === 1 ? hits : [...prevState.pictures, ...hits], // if btn load more has been clicked spread current pictures's array and add new pictures
+          pictures: page === 1 ? hits : [...prevState.pictures, ...hits],
           totalPics: totalHits,
         }));
       } catch (error) {
@@ -83,27 +82,22 @@ export class App extends Component {
       this.state;
     return (
         <Container>
-        <Searchbar onSubmit={this.handleSerach} />
+        <Searchbar onSubmit={this.handleSearch} />
 
         <ImageGallery pictures={pictures} onClick={this.onModalOpen} />
 
-        {/* for wrong query */}
         {totalPics === 0 && (
           <Error errorText={'Sorry, nothing has been found at your request'} />
         )}
-        {/* for server error */}
         {error && (
           <Error
             errorText={`Something went wrong... ${error}. Please try again.`}
           />
         )}
-        {/* loader */}
         {loading && <Loader />}
-        {/* for displaying load more btn */}
         {totalPics / pictures.length > page && (
           <Button onClick={this.onBtnClick}></Button>
         )}
-        {/* for displaying modal window */}
         {isOpen && <Modal imgSrc={modalImgSrc} onClose={this.onModalClose} />}
         <ToastContainer />
       </Container>

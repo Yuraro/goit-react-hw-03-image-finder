@@ -3,12 +3,12 @@ import { ModalWindow, Overlay } from './Modal.styled';
 
 class Modal extends Component {
     componentDidMount() {
-    window.addEventListener('keydown', this.hanleKeyDown);
+    window.addEventListener('keydown', this.handleKeyDown);
 }
     componentWillUnmount() {
-    window.removeEventListener('keydown', this.hanleKeyDown);
+    window.removeEventListener('keydown', this.handleKeyDown);
 }
-    hanleKeyDown = e => {
+    handleKeyDown = e => {
     if (e.code === 'Escape') this.props.onClose();
 };
 

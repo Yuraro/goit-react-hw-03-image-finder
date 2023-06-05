@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { notification } from 'components/Notification/Notification';
-import { FcSearch } from 'react-icons/fc';
+import { FcCamera } from 'react-icons/fc';
 import {
     Form,
     FormButton,
@@ -18,8 +18,8 @@ class Searchbar extends Component {
 
     handleSubmit = e => {
     e.preventDefault();
-	    if (this.state.value === '') {
-		    notification(
+        if (this.state.value === '') {
+            notification(
         'The search input can not be empty. Please enter a search query'
         );
 		return
@@ -33,7 +33,7 @@ class Searchbar extends Component {
         <Header>
         <Form type="submit" onSubmit={this.handleSubmit}>
             <FormButton>
-                <FcSearch size="30"  />
+                <FcCamera size="30"  />
             </FormButton>
 
         <FormInput
